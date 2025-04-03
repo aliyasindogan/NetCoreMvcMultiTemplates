@@ -21,14 +21,14 @@ public class HomeController : Controller
         Template template = new Template();
         string getData = "";
         string url = "";
-        url = id == 1 ? Constants.Navbar1Url : Constants.Navbar2Url;
+        url = id == 1 ? Constants.Navbar1Url : id == 2 ? Constants.Navbar2Url: Constants.Navbar3Url;
         string filePath = Path.Combine(_env.WebRootPath, url);
         if (System.IO.File.Exists(filePath))
         {
             getData = System.IO.File.ReadAllText(filePath);
         }
 
-        template.Navbar = getData.Replace("_firmaAdi", "AYD SOFTWARE").Replace("_anasayfa", "ANA SAYFA").Replace("_gizlilik", "Gizlilik");
+        template.Navbar = getData.Replace("_firmaAdi", "AYD SOFTWARE").Replace("_anasayfa", "ANA SAYFA").Replace("_gizlilik", "GİZLİLİK");
         return View(template);
     }
 
